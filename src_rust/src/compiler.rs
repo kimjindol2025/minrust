@@ -1,10 +1,11 @@
-// MinRust Compiler - Phase 5 Rust Implementation
-// Main compilation pipeline orchestrator
+// MinRust Compiler - Phase 5-6 Rust Implementation
+// Main compilation pipeline orchestrator with Phase 6 optimizations
 
 use crate::tokenizer::Tokenizer;
 use crate::parser::Parser;
 use crate::type_checker::TypeChecker;
 use crate::codegen::CodeGenerator;
+use crate::optimizer::COptimizer;
 
 /// Compilation result
 #[derive(Debug, Clone)]
@@ -76,7 +77,11 @@ impl Compiler {
                         // Stage 4: Code Generation
                         let mut codegen = CodeGenerator::new();
                         let c_code = codegen.generate(&program);
-                        result.c_code = Some(c_code);
+
+                        // Stage 5: Optimization
+                        let optimized_code = COptimizer::optimize_all(&c_code);
+
+                        result.c_code = Some(optimized_code);
                         result.success = true;
                     }
                     Err(errors) => {

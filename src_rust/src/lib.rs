@@ -1,5 +1,5 @@
-// MinRust Compiler Library - Phase 5 Rust Self-Hosting Implementation
-// Complete rewrite of Julia compiler in Rust
+// MinRust Compiler Library - Phase 5-6 Rust Self-Hosting Implementation
+// Complete rewrite of Julia compiler in Rust with Phase 6 optimizations
 
 pub mod tokenizer;
 pub mod ast;
@@ -7,11 +7,13 @@ pub mod parser;
 pub mod type_checker;
 pub mod codegen;
 pub mod compiler;
+pub mod optimizer;
 
 // Re-export main public API
 pub use compiler::{Compiler, CompilationResult};
 pub use tokenizer::Token;
 pub use ast::Program;
+pub use optimizer::COptimizer;
 
 /// MinRust Compiler version
 pub const VERSION: &str = "0.3.0";
