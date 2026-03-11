@@ -1,0 +1,25 @@
+[package]
+name = "minrust-compiler"
+version = "0.3.0"
+edition = "2021"
+authors = ["MinRust Team"]
+description = "MinRust Compiler - A Rust compiler written in Rust"
+license = "MIT"
+
+[[bin]]
+name = "minrustc"
+path = "src/main.rs"
+
+[lib]
+name = "minrust_compiler"
+path = "src/lib.rs"
+
+[dependencies]
+# No external dependencies for core compiler (self-contained)
+
+[dev-dependencies]
+# Testing framework built-in
+
+[profile.release]
+opt-level = 3
+lto = true
